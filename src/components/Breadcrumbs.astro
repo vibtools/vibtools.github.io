@@ -1,0 +1,47 @@
+---
+import { ChevronRight, House } from '@lucide/astro';
+
+interface Item {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: Item[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="mb-6">
+  <ol class="flex flex-wrap items-center gap-2 text-sm text-text-secondary">
+    <li>
+      <a
+        href="/"
+        class="inline-flex min-h-11 items-center gap-2 rounded-md px-2 text-text-secondary hover:text-secondary"
+      >
+        <House aria-hidden="true" size={16} />
+        <span class="sr-only">Home</span>
+      </a>
+    </li>
+    {
+      items.map((item, index) => (
+        <li class="flex items-center gap-2">
+          <ChevronRight aria-hidden="true" size={16} />
+          {item.href && index < items.length - 1 ? (
+            <a
+              href={item.href}
+              class="inline-flex min-h-11 items-center rounded-md px-2 hover:text-secondary"
+            >
+              {item.label}
+            </a>
+          ) : (
+            <span aria-current="page" class="px-2 text-text-primary">
+              {item.label}
+            </span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

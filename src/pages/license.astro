@@ -1,0 +1,46 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import PageHero from '@/components/PageHero.astro';
+---
+
+<BaseLayout
+  title="License"
+  description="License information for the VibTools open-source developer hub and linked projects."
+  canonicalPath="/license/"
+  breadcrumbs={[
+    { name: 'Home', url: 'https://vibtools.github.io/' },
+    { name: 'License', url: 'https://vibtools.github.io/license/' },
+  ]}
+>
+  <PageHero
+    eyebrow="Legal"
+    title="License"
+    description="Licensing for this website and the projects listed within it."
+  />
+  <Container class="py-14 sm:py-18">
+    <article class="prose-vib max-w-3xl rounded-xl border border-border bg-surface p-6 sm:p-8">
+      <h2>Website source</h2>
+      <p>
+        The source code for the VibTools open-source developer hub is distributed under the MIT
+        License. The complete license text is included in the repository root.
+      </p>
+      <h2>Project licenses</h2>
+      <p>
+        Each linked project is governed by the license file in its own repository. The license shown
+        on project cards is informational; the repository license is authoritative.
+      </p>
+      <h2>Brand assets</h2>
+      <p>
+        VibTools names, logos, and brand assets are not automatically granted under the software
+        license. Use them only in accordance with the official brand guidelines and applicable
+        permissions.
+      </p>
+      <h2>Third-party software</h2>
+      <p>
+        Astro, Tailwind CSS, Lucide, and other development dependencies remain subject to their
+        respective licenses.
+      </p>
+    </article>
+  </Container>
+</BaseLayout>

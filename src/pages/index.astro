@@ -1,0 +1,229 @@
+---
+import { ArrowRight, CodeXml, Download, GitBranch, PackageOpen, Users } from '@lucide/astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ButtonLink from '@/components/ButtonLink.astro';
+import Container from '@/components/Container.astro';
+import ProjectCard from '@/components/ProjectCard.astro';
+import ReleaseCard from '@/components/ReleaseCard.astro';
+import SectionHeader from '@/components/SectionHeader.astro';
+import StatCard from '@/components/StatCard.astro';
+import { projectCategories } from '@/data/projects';
+import { releases } from '@/data/releases';
+import { getProjects } from '@/lib/github';
+import { formatNumber } from '@/lib/format';
+import { site } from '@/config/site';
+
+const projects = await getProjects();
+const featuredProjects = projects.filter((project) => project.featured).slice(0, 3);
+const totalStars = projects.reduce((total, project) => total + (project.stars ?? 0), 0);
+const totalForks = projects.reduce((total, project) => total + (project.forks ?? 0), 0);
+---
+
+<BaseLayout>
+  <section class="border-b border-border py-16 sm:py-24">
+    <Container>
+      <div class="grid items-center gap-12 lg:grid-cols-[1.25fr_0.75fr]">
+        <div>
+          <p class="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
+            Official developer hub
+          </p>
+          <h1
+            class="mt-5 max-w-4xl text-4xl font-extrabold tracking-tight text-text-primary sm:text-6xl"
+          >
+            The Official Open Source Developer Ecosystem
+          </h1>
+          <p class="mt-6 max-w-2xl text-lg text-text-secondary">
+            Discover VibTools projects, releases, downloads, contribution paths, and developer
+            resources from one fast, accessible open-source portal.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <ButtonLink href="/projects/">
+              Browse projects
+              <ArrowRight aria-hidden="true" size={18} />
+            </ButtonLink>
+            <ButtonLink href={site.github} variant="secondary">
+              <GitBranch aria-hidden="true" size={18} />
+              View on GitHub
+            </ButtonLink>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-border bg-surface p-6">
+          <div class="flex items-center gap-3 border-b border-border pb-4">
+            <CodeXml aria-hidden="true" class="text-secondary" size={24} />
+            <div>
+              <p class="font-mono text-xs text-text-secondary">vibtools.github.io</p>
+              <p class="font-semibold text-text-primary">Open-source ecosystem status</p>
+            </div>
+          </div>
+          <dl class="mt-5 space-y-4 text-sm">
+            <div class="flex items-center justify-between gap-4">
+              <dt class="text-text-secondary">Framework</dt>
+              <dd class="font-mono text-text-primary">Astro + TypeScript</dd>
+            </div>
+            <div class="flex items-center justify-between gap-4">
+              <dt class="text-text-secondary">Delivery</dt>
+              <dd class="font-mono text-text-primary">Static GitHub Pages</dd>
+            </div>
+            <div class="flex items-center justify-between gap-4">
+              <dt class="text-text-secondary">Client JavaScript</dt>
+              <dd class="font-mono text-success">None required</dd>
+            </div>
+            <div class="flex items-center justify-between gap-4">
+              <dt class="text-text-secondary">Source</dt>
+              <dd class="font-mono text-secondary">Public repositories</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-16 sm:py-20">
+    <Container>
+      <SectionHeader
+        eyebrow="Featured projects"
+        title="Open-source software maintained by VibTools"
+        description="Focused projects for portable desktop workflows, self-hosted infrastructure, identity, and the developer ecosystem itself."
+      />
+      <div class="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {featuredProjects.map((project) => <ProjectCard project={project} />)}
+      </div>
+      <div class="mt-6">
+        <ButtonLink href="/projects/" variant="secondary">View all projects</ButtonLink>
+      </div>
+    </Container>
+  </section>
+
+  <section class="border-y border-border bg-surface/40 py-16 sm:py-20">
+    <Container>
+      <SectionHeader
+        eyebrow="Open source stats"
+        title="A compact ecosystem with public source and releases"
+      />
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <StatCard
+          label="Owned repositories"
+          value={formatNumber(projects.length)}
+          detail="Public VibTools projects listed here"
+        />
+        <StatCard
+          label="GitHub stars"
+          value={formatNumber(totalStars)}
+          detail="Build-time API data with local fallback"
+        />
+        <StatCard
+          label="Repository forks"
+          value={formatNumber(totalForks)}
+          detail="Community reuse and contribution"
+        />
+        <StatCard
+          label="Project categories"
+          value={formatNumber(projectCategories.length)}
+          detail="Desktop, server, identity, and web"
+        />
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-16 sm:py-20">
+    <Container>
+      <SectionHeader
+        eyebrow="Project categories"
+        title="Browse the ecosystem by engineering domain"
+        description="Categories are kept intentionally narrow so contributors can identify the correct repository quickly."
+      />
+      <div class="mt-8 grid gap-4 md:grid-cols-2">
+        {
+          projectCategories.map((category) => (
+            <article class="rounded-xl border border-border bg-surface p-5 transition-colors hover:border-secondary">
+              <PackageOpen aria-hidden="true" class="text-secondary" size={24} />
+              <h3 class="mt-4 text-lg font-bold text-text-primary">{category.name}</h3>
+              <p class="mt-2 text-sm text-text-secondary">{category.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <section class="border-y border-border bg-surface/40 py-16 sm:py-20">
+    <Container>
+      <SectionHeader
+        eyebrow="Latest releases"
+        title="Current published packages and source releases"
+      />
+      <div class="mt-8 grid gap-5 lg:grid-cols-2">
+        {releases.slice(0, 2).map((release) => <ReleaseCard release={release} />)}
+      </div>
+      <div class="mt-6">
+        <ButtonLink href="/releases/" variant="secondary">All release notes</ButtonLink>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-16 sm:py-20">
+    <Container>
+      <div class="grid gap-5 lg:grid-cols-3">
+        <article class="rounded-xl border border-border bg-surface p-6">
+          <Download aria-hidden="true" class="text-secondary" size={28} />
+          <h2 class="mt-4 text-xl font-bold text-text-primary">Downloads</h2>
+          <p class="mt-3 text-sm text-text-secondary">
+            Find Windows, Linux, portable, and source-code delivery options.
+          </p>
+          <ButtonLink href="/downloads/" variant="subtle" class="mt-5">Open downloads</ButtonLink>
+        </article>
+        <article class="rounded-xl border border-border bg-surface p-6">
+          <PackageOpen aria-hidden="true" class="text-secondary" size={28} />
+          <h2 class="mt-4 text-xl font-bold text-text-primary">Templates</h2>
+          <p class="mt-3 text-sm text-text-secondary">
+            Review the official template publication status and repository policy.
+          </p>
+          <ButtonLink href="/templates/" variant="subtle" class="mt-5">View templates</ButtonLink>
+        </article>
+        <article class="rounded-xl border border-border bg-surface p-6">
+          <CodeXml aria-hidden="true" class="text-secondary" size={28} />
+          <h2 class="mt-4 text-xl font-bold text-text-primary">Developer Tools</h2>
+          <p class="mt-3 text-sm text-text-secondary">
+            Browse developer-facing desktop, server, and ecosystem utilities.
+          </p>
+          <ButtonLink href="/tools/" variant="subtle" class="mt-5">Browse tools</ButtonLink>
+        </article>
+      </div>
+    </Container>
+  </section>
+
+  <section class="border-y border-border bg-surface/40 py-16 sm:py-20">
+    <Container>
+      <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+        <div>
+          <Users aria-hidden="true" class="text-secondary" size={30} />
+          <h2 class="mt-4 text-2xl font-bold text-text-primary sm:text-3xl">
+            Contribute through public engineering workflows
+          </h2>
+          <p class="mt-4 max-w-2xl text-text-secondary">
+            Use issues for defects, pull requests for reviewed changes, and repository discussions
+            when enabled.
+          </p>
+        </div>
+        <ButtonLink href="/community/">Community guidelines</ButtonLink>
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-16 sm:py-20">
+    <Container>
+      <div class="rounded-2xl border border-primary bg-surface p-7 sm:p-10">
+        <GitBranch aria-hidden="true" class="text-secondary" size={34} />
+        <h2 class="mt-5 text-2xl font-bold text-text-primary sm:text-3xl">
+          Build. Share. Contribute.
+        </h2>
+        <p class="mt-4 max-w-2xl text-text-secondary">
+          Explore the source, review release history, report reproducible issues, and contribute
+          focused improvements.
+        </p>
+        <ButtonLink href={site.github} class="mt-6">Open VibTools on GitHub</ButtonLink>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

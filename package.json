@@ -1,0 +1,44 @@
+{
+  "name": "vibtools-open-source-hub",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Official VibTools open source developer ecosystem website.",
+  "license": "MIT",
+  "packageManager": "npm@11.18.0",
+  "engines": {
+    "node": "^20.20.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "node ./scripts/astro-cli.mjs dev",
+    "start": "node ./scripts/astro-cli.mjs dev",
+    "build": "node ./scripts/astro-cli.mjs build",
+    "preview": "node ./scripts/astro-cli.mjs preview",
+    "check": "node ./scripts/astro-cli.mjs check",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "validate": "npm run check && npm run format:check && npm run build && npm run audit:prod",
+    "audit:prod": "npm audit --audit-level=low"
+  },
+  "dependencies": {
+    "@lucide/astro": "1.23.0",
+    "@tailwindcss/vite": "4.3.2",
+    "astro": "6.4.8",
+    "tailwindcss": "4.3.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.9",
+    "prettier": "3.9.4",
+    "prettier-plugin-astro": "0.14.1",
+    "typescript": "6.0.3",
+    "vite": "7.3.6"
+  },
+  "overrides": {
+    "yaml": "2.8.3",
+    "esbuild": "0.28.1"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true,
+    "sharp@0.34.5": true
+  }
+}

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-labelledby="title desc">
+<title id="title">VibTools project placeholder</title>
+<desc id="desc">A minimal developer grid using the official VibTools color system.</desc>
+<rect width="800" height="450" fill="#0D1117"/>
+<rect x="28" y="28" width="744" height="394" rx="24" fill="#161B22" stroke="#30363D" stroke-width="2"/>
+<path d="M64 104h672M64 176h672M64 248h672M64 320h672" stroke="#30363D" stroke-width="2"/>
+<path d="M168 64v322M304 64v322M440 64v322M576 64v322" stroke="#30363D" stroke-width="2"/>
+<rect x="168" y="176" width="272" height="72" rx="12" fill="#2563EB"/>
+<rect x="440" y="248" width="136" height="72" rx="12" fill="#38BDF8"/>
+</svg>

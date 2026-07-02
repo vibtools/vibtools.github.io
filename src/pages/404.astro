@@ -1,0 +1,28 @@
+---
+import { ArrowLeft, SearchX } from '@lucide/astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ButtonLink from '@/components/ButtonLink.astro';
+import Container from '@/components/Container.astro';
+---
+
+<BaseLayout
+  title="Page not found"
+  description="The requested VibTools page could not be found."
+  canonicalPath="/404.html"
+  noindex
+>
+  <Container class="flex min-h-[65vh] items-center justify-center py-16 text-center">
+    <div>
+      <SearchX aria-hidden="true" class="mx-auto text-secondary" size={54} />
+      <p class="mt-6 font-mono text-sm text-secondary">404</p>
+      <h1 class="mt-2 text-3xl font-bold text-text-primary sm:text-5xl">Page not found</h1>
+      <p class="mx-auto mt-4 max-w-xl text-text-secondary">
+        The requested path does not exist in the current VibTools open-source hub.
+      </p>
+      <ButtonLink href="/" class="mt-7">
+        <ArrowLeft aria-hidden="true" size={18} />
+        Return home
+      </ButtonLink>
+    </div>
+  </Container>
+</BaseLayout>

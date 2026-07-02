@@ -1,0 +1,83 @@
+---
+import { Apple, Box, GitBranch, Laptop, Package, Server } from '@lucide/astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ButtonLink from '@/components/ButtonLink.astro';
+import Container from '@/components/Container.astro';
+import EmptyState from '@/components/EmptyState.astro';
+import PageHero from '@/components/PageHero.astro';
+import { getProjects } from '@/lib/github';
+import type { OperatingSystem } from '@/types/project';
+
+const projects = await getProjects();
+const groups: { name: OperatingSystem; icon: typeof Laptop }[] = [
+  { name: 'Windows', icon: Laptop },
+  { name: 'Linux', icon: Server },
+  { name: 'macOS', icon: Apple },
+  { name: 'Portable', icon: Package },
+  { name: 'Source Code', icon: GitBranch },
+];
+---
+
+<BaseLayout
+  title="Downloads"
+  description="Official VibTools downloads for Windows, Linux, macOS, portable packages, and source code."
+  canonicalPath="/downloads/"
+  breadcrumbs={[
+    { name: 'Home', url: 'https://vibtools.github.io/' },
+    { name: 'Downloads', url: 'https://vibtools.github.io/downloads/' },
+  ]}
+>
+  <PageHero
+    eyebrow="Downloads"
+    title="Official downloads and source archives"
+    description="Use GitHub Releases for published binaries and repository archives for source-code distributions."
+  />
+  <Container class="space-y-10 py-14 sm:py-18">
+    {
+      groups.map(({ name, icon: Icon }) => {
+        const matches = projects.filter((project) => project.operatingSystems.includes(name));
+        return (
+          <section
+            id={name.toLowerCase().replaceAll(' ', '-')}
+            class="scroll-mt-24 rounded-xl border border-border bg-surface p-6"
+          >
+            <div class="flex items-center gap-3">
+              <Icon aria-hidden="true" class="text-secondary" size={26} />
+              <h2 class="text-xl font-bold text-text-primary">{name}</h2>
+            </div>
+            {matches.length > 0 ? (
+              <div class="mt-5 grid gap-4 md:grid-cols-2">
+                {matches.map((project) => {
+                  const repo = project.repository.split('/').at(-1);
+                  const href =
+                    name === 'Source Code'
+                      ? `https://github.com/vibtools/${repo}/archive/refs/heads/main.zip`
+                      : `https://github.com/vibtools/${repo}/releases`;
+                  return (
+                    <article class="rounded-lg border border-border bg-background p-5">
+                      <Box aria-hidden="true" class="text-secondary" size={22} />
+                      <h3 class="mt-3 font-bold text-text-primary">{project.name}</h3>
+                      <p class="mt-2 text-sm text-text-secondary">{project.description}</p>
+                      <ButtonLink href={href} variant="secondary" class="mt-4">
+                        {name === 'Source Code' ? 'Download source' : 'Open releases'}
+                      </ButtonLink>
+                    </article>
+                  );
+                })}
+              </div>
+            ) : (
+              <div class="mt-5">
+                <EmptyState
+                  title={`No official ${name} package`}
+                  description={`VibTools has not published an official ${name} package in the current repository catalog.`}
+                  href="https://github.com/vibtools"
+                  action="Review GitHub repositories"
+                />
+              </div>
+            )}
+          </section>
+        );
+      })
+    }
+  </Container>
+</BaseLayout>

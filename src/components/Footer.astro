@@ -1,0 +1,65 @@
+---
+import { GitBranch, Mail } from '@lucide/astro';
+import Container from '@/components/Container.astro';
+import Logo from '@/components/Logo.astro';
+import { footerNavigation, site } from '@/config/site';
+---
+
+<footer class="border-t border-border bg-background py-10">
+  <Container>
+    <div class="grid gap-10 md:grid-cols-[1.2fr_1fr] md:items-start">
+      <div>
+        <Logo />
+        <p class="mt-4 max-w-md text-sm text-text-secondary">{site.tagline}</p>
+        <div class="mt-5 flex flex-wrap gap-3">
+          <a
+            href={site.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-11 items-center gap-2 rounded-md border border-border bg-surface px-3 text-sm font-medium text-text-primary hover:border-secondary hover:text-secondary"
+          >
+            <GitBranch aria-hidden="true" size={18} />
+            GitHub
+          </a>
+          <a
+            href={`mailto:${site.email}`}
+            class="inline-flex min-h-11 items-center gap-2 rounded-md border border-border bg-surface px-3 text-sm font-medium text-text-primary hover:border-secondary hover:text-secondary"
+          >
+            <Mail aria-hidden="true" size={18} />
+            Contact
+          </a>
+        </div>
+      </div>
+
+      <nav aria-label="Footer navigation" class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+        {
+          footerNavigation.map((item) => (
+            <a
+              href={item.href}
+              target={
+                'external' in item && item.external && item.href.startsWith('http')
+                  ? '_blank'
+                  : undefined
+              }
+              rel={
+                'external' in item && item.external && item.href.startsWith('http')
+                  ? 'noopener noreferrer'
+                  : undefined
+              }
+              class="inline-flex min-h-11 items-center rounded-md px-2 text-sm text-text-secondary hover:bg-surface hover:text-secondary"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+
+    <div
+      class="mt-10 flex flex-col gap-2 border-t border-border pt-6 text-sm text-text-secondary sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>© {new Date().getUTCFullYear()} VibTools. All rights reserved.</p>
+      <p class="font-mono text-xs">Build. Share. Contribute.</p>
+    </div>
+  </Container>
+</footer>

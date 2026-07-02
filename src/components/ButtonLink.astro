@@ -1,0 +1,43 @@
+---
+import { ArrowUpRight } from '@lucide/astro';
+import { isExternalUrl } from '@/lib/urls';
+
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'subtle';
+  external?: boolean;
+  class?: string;
+  ariaLabel?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  external = isExternalUrl(href),
+  class: className = '',
+  ariaLabel,
+} = Astro.props;
+
+const styles = {
+  primary: 'border-primary bg-primary text-text-primary hover:scale-[1.02] hover:bg-primary/90',
+  secondary:
+    'border-border bg-surface text-text-primary hover:scale-[1.02] hover:border-secondary hover:text-secondary',
+  subtle:
+    'border-transparent bg-transparent text-secondary hover:scale-[1.02] hover:border-border hover:bg-surface',
+};
+---
+
+<a
+  href={href}
+  target={external && !href.startsWith('mailto:') ? '_blank' : undefined}
+  rel={external && !href.startsWith('mailto:') ? 'noopener noreferrer' : undefined}
+  aria-label={ariaLabel}
+  class:list={[
+    'inline-flex min-h-11 items-center justify-center gap-2 rounded-md border px-4 py-2.5 text-sm font-semibold no-underline transition duration-150',
+    styles[variant],
+    className,
+  ]}
+>
+  <slot />
+  {external && !href.startsWith('mailto:') && <ArrowUpRight aria-hidden="true" size={16} />}
+</a>

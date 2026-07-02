@@ -1,0 +1,90 @@
+---
+import { BookOpen, Download, GitBranch } from '@lucide/astro';
+import type { Project } from '@/types/project';
+import ButtonLink from '@/components/ButtonLink.astro';
+import Logo from '@/components/Logo.astro';
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<article
+  class="flex h-full min-w-0 flex-col rounded-xl border border-border bg-surface p-5 transition-colors duration-150 hover:border-secondary"
+>
+  <div class="flex items-start justify-between gap-4">
+    <div class="flex min-w-0 items-center gap-3">
+      <div
+        class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-border bg-background"
+      >
+        <Logo compact class="w-8" />
+      </div>
+      <div class="min-w-0">
+        <p class="font-mono text-xs text-secondary">{project.category}</p>
+        <h3 class="mt-1 truncate text-lg font-bold text-text-primary">
+          <a href={`/project/${project.slug}/`} class="hover:text-secondary">{project.name}</a>
+        </h3>
+      </div>
+    </div>
+    {
+      project.archived && (
+        <span class="rounded-full border border-warning px-2 py-1 font-mono text-xs text-warning">
+          Archived
+        </span>
+      )
+    }
+  </div>
+
+  <p class="mt-4 flex-1 text-sm text-text-secondary">{project.description}</p>
+
+  <dl class="mt-5 grid grid-cols-2 gap-3 border-y border-border py-4 text-sm">
+    <div>
+      <dt class="text-xs text-text-secondary">Language</dt>
+      <dd class="mt-1 font-mono text-text-primary">{project.language}</dd>
+    </div>
+    <div>
+      <dt class="text-xs text-text-secondary">License</dt>
+      <dd class="mt-1 font-mono text-text-primary">{project.license}</dd>
+    </div>
+    <div>
+      <dt class="text-xs text-text-secondary">Latest version</dt>
+      <dd class="mt-1 font-mono text-text-primary">{project.latestVersion}</dd>
+    </div>
+    <div>
+      <dt class="text-xs text-text-secondary">Availability</dt>
+      <dd class="mt-1 font-mono text-text-primary">{project.operatingSystems[0]}</dd>
+    </div>
+  </dl>
+
+  <div class="mt-5 flex flex-wrap gap-2">
+    <ButtonLink
+      href={project.repository}
+      variant="secondary"
+      class="w-full sm:flex-1"
+      ariaLabel={`${project.name} on GitHub`}
+    >
+      <GitBranch aria-hidden="true" size={16} />
+      GitHub
+    </ButtonLink>
+    <ButtonLink
+      href={`https://github.com/vibtools/${project.repository.split('/').at(-1)}/releases`}
+      variant="secondary"
+      class="w-full sm:flex-1"
+      ariaLabel={`Download ${project.name}`}
+    >
+      <Download aria-hidden="true" size={16} />
+      Download
+    </ButtonLink>
+    <ButtonLink
+      href={project.documentation}
+      variant="subtle"
+      class="w-full"
+      ariaLabel={`${project.name} documentation`}
+    >
+      <BookOpen aria-hidden="true" size={16} />
+      Documentation
+    </ButtonLink>
+  </div>
+</article>

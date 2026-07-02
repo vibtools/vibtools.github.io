@@ -1,0 +1,134 @@
+---
+import { BookOpen, Download, ExternalLink, GitBranch, GitFork, Star } from '@lucide/astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import ButtonLink from '@/components/ButtonLink.astro';
+import Container from '@/components/Container.astro';
+import Logo from '@/components/Logo.astro';
+import { getProjects } from '@/lib/github';
+import { formatDate, formatNumber } from '@/lib/format';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const repositoryName = project.repository.split('/').at(-1);
+const releaseUrl = `https://github.com/vibtools/${repositoryName}/releases`;
+const sourceUrl = `https://github.com/vibtools/${repositoryName}/archive/refs/heads/main.zip`;
+---
+
+<BaseLayout
+  title={project.name}
+  description={project.description}
+  canonicalPath={`/project/${project.slug}/`}
+  breadcrumbs={[
+    { name: 'Home', url: 'https://vibtools.github.io/' },
+    { name: 'Projects', url: 'https://vibtools.github.io/projects/' },
+    { name: project.name, url: `https://vibtools.github.io/project/${project.slug}/` },
+  ]}
+>
+  <Container class="py-10 sm:py-14">
+    <Breadcrumbs items={[{ label: 'Projects', href: '/projects/' }, { label: project.name }]} />
+
+    <div class="grid gap-8 lg:grid-cols-[1fr_22rem]">
+      <article>
+        <div class="flex flex-col gap-5 sm:flex-row sm:items-start">
+          <div
+            class="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl border border-border bg-surface"
+          >
+            <Logo compact class="w-12" />
+          </div>
+          <div>
+            <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-secondary">
+              {project.category}
+            </p>
+            <h1 class="mt-2 text-3xl font-bold tracking-tight text-text-primary sm:text-5xl">
+              {project.name}
+            </h1>
+            <p class="mt-5 max-w-3xl text-lg text-text-secondary">{project.description}</p>
+          </div>
+        </div>
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <ButtonLink href={project.repository}>
+            <GitBranch aria-hidden="true" size={18} />
+            GitHub repository
+          </ButtonLink>
+          <ButtonLink href={releaseUrl} variant="secondary">
+            <Download aria-hidden="true" size={18} />
+            Releases
+          </ButtonLink>
+          <ButtonLink href={project.documentation} variant="secondary">
+            <BookOpen aria-hidden="true" size={18} />
+            Documentation
+          </ButtonLink>
+        </div>
+
+        <section class="mt-10 rounded-xl border border-border bg-surface p-6">
+          <h2 class="text-xl font-bold text-text-primary">Project availability</h2>
+          <p class="mt-3 text-sm text-text-secondary">
+            Official distribution channels associated with this repository.
+          </p>
+          <ul class="mt-5 grid gap-3 sm:grid-cols-2">
+            {
+              project.operatingSystems.map((os) => (
+                <li class="flex items-center gap-3 rounded-lg border border-border bg-background p-4 text-sm text-text-primary">
+                  <ExternalLink aria-hidden="true" class="text-secondary" size={18} />
+                  {os}
+                </li>
+              ))
+            }
+          </ul>
+          <ButtonLink href={sourceUrl} variant="subtle" class="mt-5"
+            >Download source archive</ButtonLink
+          >
+        </section>
+      </article>
+
+      <aside
+        aria-label="Project metadata"
+        class="h-fit rounded-xl border border-border bg-surface p-5 lg:sticky lg:top-24"
+      >
+        <h2 class="text-base font-bold text-text-primary">Repository metadata</h2>
+        <dl class="mt-4 divide-y divide-border text-sm">
+          <div class="flex items-center justify-between gap-4 py-3">
+            <dt class="text-text-secondary">Language</dt>
+            <dd class="font-mono text-text-primary">{project.language}</dd>
+          </div>
+          <div class="flex items-center justify-between gap-4 py-3">
+            <dt class="text-text-secondary">License</dt>
+            <dd class="font-mono text-text-primary">{project.license}</dd>
+          </div>
+          <div class="flex items-center justify-between gap-4 py-3">
+            <dt class="text-text-secondary">Version</dt>
+            <dd class="font-mono text-text-primary">{project.latestVersion}</dd>
+          </div>
+          <div class="flex items-center justify-between gap-4 py-3">
+            <dt class="inline-flex items-center gap-2 text-text-secondary">
+              <Star aria-hidden="true" size={16} /> Stars
+            </dt>
+            <dd class="font-mono text-text-primary">{formatNumber(project.stars ?? 0)}</dd>
+          </div>
+          <div class="flex items-center justify-between gap-4 py-3">
+            <dt class="inline-flex items-center gap-2 text-text-secondary">
+              <GitFork aria-hidden="true" size={16} /> Forks
+            </dt>
+            <dd class="font-mono text-text-primary">{formatNumber(project.forks ?? 0)}</dd>
+          </div>
+          {
+            project.updatedAt && (
+              <div class="py-3">
+                <dt class="text-text-secondary">Last repository update</dt>
+                <dd class="mt-1 font-mono text-xs text-text-primary">
+                  {formatDate(project.updatedAt)}
+                </dd>
+              </div>
+            )
+          }
+        </dl>
+      </aside>
+    </div>
+  </Container>
+</BaseLayout>

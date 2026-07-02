@@ -1,0 +1,167 @@
+vibtools-open-source-hub/
+├── .github/
+│   ├── ISSUE_TEMPLATE/
+│   │   ├── bug_report.yml
+│   │   └── config.yml
+│   ├── workflows/
+│   │   ├── deploy.yml
+│   │   └── quality.yml
+│   ├── dependabot.yml
+│   └── pull_request_template.md
+├── audit/
+│   ├── screenshots/
+│   │   ├── home-1024.png
+│   │   ├── home-1440.png
+│   │   ├── home-1920.png
+│   │   ├── home-320.png
+│   │   ├── home-375.png
+│   │   └── home-768.png
+│   ├── BASELINE_AUDIT_REPORT.md
+│   ├── STATIC_AUDIT_RESULT.json
+│   └── UNIFIED_DIFF.patch
+├── dist/
+│   ├── _assets/
+│   │   └── BaseLayout.Djn0NKdm.css
+│   ├── about/
+│   │   └── index.html
+│   ├── assets/
+│   │   └── project-placeholder.svg
+│   ├── brand/
+│   │   ├── vibtools-horizontal.png
+│   │   └── vibtools-icon.png
+│   ├── changelog/
+│   │   └── index.html
+│   ├── community/
+│   │   └── index.html
+│   ├── downloads/
+│   │   └── index.html
+│   ├── license/
+│   │   └── index.html
+│   ├── privacy/
+│   │   └── index.html
+│   ├── project/
+│   │   ├── portable-account-browser/
+│   │   │   └── index.html
+│   │   ├── vib-id-account-portal/
+│   │   │   └── index.html
+│   │   ├── vibmail-open-source/
+│   │   │   └── index.html
+│   │   └── vibtools-open-source-hub/
+│   │       └── index.html
+│   ├── projects/
+│   │   └── index.html
+│   ├── releases/
+│   │   └── index.html
+│   ├── templates/
+│   │   └── index.html
+│   ├── tools/
+│   │   └── index.html
+│   ├── .nojekyll
+│   ├── 404.html
+│   ├── apple-touch-icon.png
+│   ├── favicon.png
+│   ├── feed.xml
+│   ├── icon-512.png
+│   ├── index.html
+│   ├── og-default.png
+│   ├── robots.txt
+│   ├── rss.xml
+│   ├── site.webmanifest
+│   └── sitemap.xml
+├── docs/
+│   ├── brand-guidelines.png
+│   ├── DEPLOYMENT.md
+│   └── QA_CHECKLIST.md
+├── public/
+│   ├── assets/
+│   │   └── project-placeholder.svg
+│   ├── brand/
+│   │   ├── vibtools-horizontal.png
+│   │   └── vibtools-icon.png
+│   ├── .nojekyll
+│   ├── apple-touch-icon.png
+│   ├── favicon.png
+│   ├── icon-512.png
+│   └── og-default.png
+├── scripts/
+│   └── astro-cli.mjs
+├── src/
+│   ├── components/
+│   │   ├── Breadcrumbs.astro
+│   │   ├── ButtonLink.astro
+│   │   ├── Container.astro
+│   │   ├── EmptyState.astro
+│   │   ├── Footer.astro
+│   │   ├── Header.astro
+│   │   ├── Logo.astro
+│   │   ├── PageHero.astro
+│   │   ├── ProjectCard.astro
+│   │   ├── ReleaseCard.astro
+│   │   ├── SectionHeader.astro
+│   │   ├── SkipLink.astro
+│   │   └── StatCard.astro
+│   ├── config/
+│   │   └── site.ts
+│   ├── content/
+│   │   └── changelog/
+│   │       └── 2026-07-01-v1.0.0.md
+│   ├── data/
+│   │   ├── community.ts
+│   │   ├── projects.ts
+│   │   └── releases.ts
+│   ├── layouts/
+│   │   └── BaseLayout.astro
+│   ├── lib/
+│   │   ├── format.ts
+│   │   ├── github.ts
+│   │   ├── seo.ts
+│   │   └── urls.ts
+│   ├── pages/
+│   │   ├── project/
+│   │   │   └── [slug].astro
+│   │   ├── 404.astro
+│   │   ├── about.astro
+│   │   ├── changelog.astro
+│   │   ├── community.astro
+│   │   ├── downloads.astro
+│   │   ├── feed.xml.ts
+│   │   ├── index.astro
+│   │   ├── license.astro
+│   │   ├── privacy.astro
+│   │   ├── projects.astro
+│   │   ├── releases.astro
+│   │   ├── robots.txt.ts
+│   │   ├── rss.xml.ts
+│   │   ├── site.webmanifest.ts
+│   │   ├── sitemap.xml.ts
+│   │   ├── templates.astro
+│   │   └── tools.astro
+│   ├── styles/
+│   │   └── global.css
+│   ├── types/
+│   │   └── project.ts
+│   ├── content.config.ts
+│   └── env.d.ts
+├── .env.example
+├── .gitignore
+├── .npmrc
+├── .nvmrc
+├── .prettierignore
+├── .prettierrc.mjs
+├── astro.config.mjs
+├── AUDIT_REPORT.md
+├── BUILD_REPORT.md
+├── CHANGE_REPORT.md
+├── CHANGELOG.md
+├── CODE_OF_CONDUCT.md
+├── COMPATIBILITY_REPORT.md
+├── CONTRIBUTING.md
+├── DEPLOYMENT_REPORT.md
+├── LICENSE
+├── package-lock.json
+├── package.json
+├── PROJECT_TREE.txt
+├── README.md
+├── SECURITY.md
+├── tailwind.config.mjs
+└── tsconfig.json

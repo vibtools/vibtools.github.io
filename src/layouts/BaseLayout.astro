@@ -1,0 +1,92 @@
+---
+import '@/styles/global.css';
+import Footer from '@/components/Footer.astro';
+import Header from '@/components/Header.astro';
+import SkipLink from '@/components/SkipLink.astro';
+import { site } from '@/config/site';
+import { createStructuredData, type BreadcrumbItem } from '@/lib/seo';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  breadcrumbs?: BreadcrumbItem[];
+}
+
+const {
+  title = site.tagline,
+  description = site.description,
+  canonicalPath = Astro.url.pathname,
+  image = '/og-default.png',
+  type = 'website',
+  noindex = false,
+  breadcrumbs = [],
+} = Astro.props;
+
+const metaTitle =
+  title === site.tagline ? `${site.name} — ${site.tagline}` : `${title} | ${site.name}`;
+const canonical = new URL(canonicalPath, site.url).toString();
+const socialImage = new URL(image, site.url).toString();
+const structuredData = createStructuredData({
+  title: metaTitle,
+  description,
+  canonical,
+  image: socialImage,
+  type,
+  breadcrumbs,
+});
+---
+
+<!doctype html>
+<html lang={site.language}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#0D1117" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <title>{metaTitle}</title>
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="alternate" type="application/rss+xml" title="VibTools RSS" href="/rss.xml" />
+    <link rel="alternate" type="application/atom+xml" title="VibTools Feed" href="/feed.xml" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+    />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={metaTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:locale" content={site.locale} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={metaTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+
+    <script type="application/ld+json" is:inline set:html={structuredData} />
+  </head>
+  <body>
+    <SkipLink />
+    <Header />
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

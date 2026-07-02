@@ -1,0 +1,87 @@
+---
+import { GitBranch, Menu, X } from '@lucide/astro';
+import Container from '@/components/Container.astro';
+import Logo from '@/components/Logo.astro';
+import { navigation, site } from '@/config/site';
+import { normalizePath } from '@/lib/urls';
+
+const currentPath = normalizePath(Astro.url.pathname);
+const isActive = (href: string) =>
+  href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+---
+
+<header class="sticky top-0 z-50 border-b border-border bg-background/95">
+  <Container class="flex min-h-16 items-center justify-between gap-4">
+    <a href="/" class="inline-flex min-h-11 items-center rounded-md" aria-label="VibTools home">
+      <Logo />
+    </a>
+
+    <nav aria-label="Primary navigation" class="hidden items-center gap-1 lg:flex">
+      {
+        navigation.map((item) => (
+          <a
+            href={item.href}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+            class:list={[
+              'inline-flex min-h-11 items-center rounded-md px-3 text-sm font-medium transition-colors',
+              isActive(item.href)
+                ? 'bg-surface text-text-primary'
+                : 'text-text-secondary hover:bg-surface hover:text-text-primary',
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href={site.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="ml-2 inline-flex min-h-11 items-center gap-2 rounded-md border border-border bg-surface px-3 text-sm font-semibold text-text-primary transition hover:scale-[1.02] hover:border-secondary hover:text-secondary"
+      >
+        <GitBranch aria-hidden="true" size={18} />
+        GitHub
+      </a>
+    </nav>
+
+    <details class="group relative lg:hidden">
+      <summary
+        class="inline-flex min-h-11 min-w-11 cursor-pointer list-none items-center justify-center rounded-md border border-border bg-surface text-text-primary hover:border-secondary hover:text-secondary"
+        aria-label="Toggle navigation menu"
+      >
+        <Menu class="group-open:hidden" aria-hidden="true" size={20} />
+        <X class="hidden group-open:block" aria-hidden="true" size={20} />
+      </summary>
+      <nav
+        aria-label="Mobile navigation"
+        class="absolute right-0 top-14 w-[min(20rem,calc(100vw-2rem))] rounded-lg border border-border bg-surface p-2"
+      >
+        {
+          navigation.map((item) => (
+            <a
+              href={item.href}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+              class:list={[
+                'flex min-h-11 items-center rounded-md px-3 text-sm font-medium',
+                isActive(item.href)
+                  ? 'bg-primary text-text-primary'
+                  : 'text-text-secondary hover:bg-background hover:text-text-primary',
+              ]}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+        <a
+          href={site.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="mt-2 flex min-h-11 items-center gap-2 rounded-md border border-border px-3 text-sm font-semibold text-text-primary hover:border-secondary hover:text-secondary"
+        >
+          <GitBranch aria-hidden="true" size={18} />
+          GitHub
+        </a>
+      </nav>
+    </details>
+  </Container>
+</header>

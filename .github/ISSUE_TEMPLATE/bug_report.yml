@@ -1,0 +1,34 @@
+name: Bug report
+description: Report a reproducible defect in the website.
+title: '[Bug]: '
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Provide a minimal, reproducible report without sensitive information.
+  - type: input
+    id: route
+    attributes:
+      label: Affected route
+      placeholder: https://vibtools.github.io/projects/
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current behavior
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser, operating system, viewport, assistive technology, and relevant versions.
+    validations:
+      required: true

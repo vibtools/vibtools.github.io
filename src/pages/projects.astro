@@ -1,0 +1,33 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import PageHero from '@/components/PageHero.astro';
+import ProjectCard from '@/components/ProjectCard.astro';
+import { getProjects } from '@/lib/github';
+
+const projects = await getProjects();
+---
+
+<BaseLayout
+  title="Projects"
+  description="Browse every maintained VibTools open-source project and repository."
+  canonicalPath="/projects/"
+  breadcrumbs={[
+    { name: 'Home', url: 'https://vibtools.github.io/' },
+    { name: 'Projects', url: 'https://vibtools.github.io/projects/' },
+  ]}
+>
+  <PageHero
+    eyebrow="Projects"
+    title="VibTools open-source projects"
+    description="Public repositories for desktop applications, server infrastructure, identity, and the official ecosystem platform."
+  />
+  <Container class="py-14 sm:py-18">
+    <section aria-labelledby="projects-list-title">
+      <h2 id="projects-list-title" class="sr-only">All VibTools projects</h2>
+      <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </section>
+  </Container>
+</BaseLayout>

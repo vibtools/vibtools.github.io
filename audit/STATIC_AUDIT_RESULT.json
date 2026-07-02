@@ -1,0 +1,50 @@
+{
+  "status": "pass",
+  "errors": [],
+  "warnings": [],
+  "metrics": {
+    "html_pages": 16,
+    "source_text_files_inspected": 73,
+    "internal_references": 317,
+    "external_links": 133,
+    "fragment_references": 35,
+    "image_references": 46,
+    "jsonld_blocks": 16,
+    "inline_style_attributes": 0,
+    "inline_event_handlers": 0,
+    "executable_inline_scripts": 0,
+    "accessible_controls": 499,
+    "source_imports_checked": 99,
+    "generated_javascript_files": 0,
+    "dist_files": 30,
+    "approved_color_occurrences": {
+      "0d1117": 7,
+      "161b22": 4,
+      "22c55e": 2,
+      "2563eb": 3,
+      "30363d": 5,
+      "38bdf8": 4,
+      "8b949e": 3,
+      "ef4444": 2,
+      "f59e0b": 2,
+      "f8fafc": 6
+    },
+    "heading_counts": {
+      "h1": 16,
+      "h2": 53,
+      "h3": 26
+    },
+    "regression": {
+      "route_sets_identical": true,
+      "public_asset_mismatches": [],
+      "changed_ui_source_files": [
+        "src/components/Header.astro",
+        "src/pages/404.astro",
+        "src/styles/global.css"
+      ],
+      "unexpected_ui_source_changes": [],
+      "css_equivalent_except_version_banner": true,
+      "dom_mismatches_after_allowed_normalization": []
+    }
+  }
+}

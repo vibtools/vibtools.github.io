@@ -1,0 +1,20 @@
+---
+interface Props {
+  compact?: boolean;
+  class?: string;
+}
+
+const { compact = false, class: className = '' } = Astro.props;
+const src = compact ? '/brand/vibtools-icon.png' : '/brand/vibtools-horizontal.png';
+const width = compact ? 72 : 744;
+const height = compact ? 72 : 244;
+---
+
+<img
+  src={src}
+  width={width}
+  height={height}
+  alt="VibTools"
+  class:list={['h-auto object-contain', compact ? 'w-10' : 'w-36 sm:w-40', className]}
+  decoding="async"
+/>

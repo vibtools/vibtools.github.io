@@ -1,0 +1,31 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import PageHero from '@/components/PageHero.astro';
+import ReleaseCard from '@/components/ReleaseCard.astro';
+import { releases } from '@/data/releases';
+---
+
+<BaseLayout
+  title="Release Notes"
+  description="Official VibTools release notes and download references."
+  canonicalPath="/releases/"
+  breadcrumbs={[
+    { name: 'Home', url: 'https://vibtools.github.io/' },
+    { name: 'Releases', url: 'https://vibtools.github.io/releases/' },
+  ]}
+>
+  <PageHero
+    eyebrow="Releases"
+    title="Release notes"
+    description="Published versions and source releases linked directly to their official GitHub repositories."
+  />
+  <Container class="py-14 sm:py-18">
+    <section aria-labelledby="release-list-title">
+      <h2 id="release-list-title" class="sr-only">All VibTools releases</h2>
+      <div class="grid gap-5 lg:grid-cols-2">
+        {releases.map((release) => <ReleaseCard release={release} />)}
+      </div>
+    </section>
+  </Container>
+</BaseLayout>

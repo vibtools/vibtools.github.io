@@ -1,0 +1,34 @@
+---
+import { Download, Tag } from '@lucide/astro';
+import type { Release } from '@/types/project';
+import ButtonLink from '@/components/ButtonLink.astro';
+import { formatDate } from '@/lib/format';
+
+interface Props {
+  release: Release;
+}
+const { release } = Astro.props;
+---
+
+<article class="rounded-xl border border-border bg-surface p-5">
+  <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+    <div>
+      <p class="font-mono text-xs text-secondary">{formatDate(release.publishedAt)}</p>
+      <h3 class="mt-2 text-lg font-bold text-text-primary">{release.projectName}</h3>
+    </div>
+    <span
+      class="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-background px-3 py-1 font-mono text-xs text-text-primary"
+    >
+      <Tag aria-hidden="true" size={14} />
+      {release.version}
+    </span>
+  </div>
+  <p class="mt-4 text-sm text-text-secondary">{release.summary}</p>
+  <div class="mt-5 flex flex-wrap gap-2">
+    <ButtonLink href={release.releaseUrl} variant="secondary">Release notes</ButtonLink>
+    <ButtonLink href={release.downloadUrl}>
+      <Download aria-hidden="true" size={16} />
+      Download
+    </ButtonLink>
+  </div>
+</article>

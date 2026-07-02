@@ -1,0 +1,49 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import PageHero from '@/components/PageHero.astro';
+---
+
+<BaseLayout
+  title="Privacy"
+  description="Privacy information for the static VibTools open-source developer hub."
+  canonicalPath="/privacy/"
+  breadcrumbs={[
+    { name: 'Home', url: 'https://vibtools.github.io/' },
+    { name: 'Privacy', url: 'https://vibtools.github.io/privacy/' },
+  ]}
+>
+  <PageHero
+    eyebrow="Legal"
+    title="Privacy"
+    description="How this static open-source website handles information."
+  />
+  <Container class="py-14 sm:py-18">
+    <article class="prose-vib max-w-3xl rounded-xl border border-border bg-surface p-6 sm:p-8">
+      <h2>Website operation</h2>
+      <p>
+        This website is generated as static files and does not provide user accounts, forms,
+        payments, or a private application database.
+      </p>
+      <h2>Cookies and analytics</h2>
+      <p>
+        The project does not include first-party analytics scripts, advertising tags, tracking
+        pixels, or application cookies.
+      </p>
+      <h2>External services</h2>
+      <p>
+        Links to GitHub and other external destinations are governed by the privacy terms of those
+        services. GitHub Pages may process ordinary hosting logs as part of delivering the website.
+      </p>
+      <h2>Fonts</h2>
+      <p>
+        The website requests Inter and JetBrains Mono stylesheets from Google Fonts. The browser may
+        connect to Google infrastructure to retrieve those assets.
+      </p>
+      <h2>Contact</h2>
+      <p>
+        Privacy questions may be sent to <a href="mailto:design@vib.tools">design@vib.tools</a>.
+      </p>
+    </article>
+  </Container>
+</BaseLayout>

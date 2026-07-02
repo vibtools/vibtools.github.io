@@ -1,0 +1,27 @@
+---
+import Container from '@/components/Container.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description: string;
+}
+
+const { eyebrow, title, description } = Astro.props;
+---
+
+<section class="border-b border-border bg-background py-14 sm:py-18">
+  <Container>
+    <div class="max-w-3xl">
+      {
+        eyebrow && (
+          <p class="mb-4 font-mono text-xs font-semibold uppercase tracking-[0.18em] text-secondary">
+            {eyebrow}
+          </p>
+        )
+      }
+      <h1 class="text-3xl font-bold tracking-tight text-text-primary sm:text-5xl">{title}</h1>
+      <p class="mt-5 text-base text-text-secondary sm:text-lg">{description}</p>
+    </div>
+  </Container>
+</section>

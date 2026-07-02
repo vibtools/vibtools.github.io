@@ -1,0 +1,66 @@
+---
+import { CodeXml, Gauge, GitBranch, ShieldCheck } from '@lucide/astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import PageHero from '@/components/PageHero.astro';
+---
+
+<BaseLayout
+  title="About VibTools Open Source"
+  description="About the VibTools open-source developer ecosystem and its engineering principles."
+  canonicalPath="/about/"
+  breadcrumbs={[
+    { name: 'Home', url: 'https://vibtools.github.io/' },
+    { name: 'About', url: 'https://vibtools.github.io/about/' },
+  ]}
+>
+  <PageHero
+    eyebrow="About"
+    title="VibTools Open Source"
+    description="A developer-first ecosystem for public source code, reproducible releases, focused contribution, and practical software."
+  />
+  <Container class="py-14 sm:py-18">
+    <div class="grid gap-5 md:grid-cols-2">
+      <article class="rounded-xl border border-border bg-surface p-6">
+        <CodeXml aria-hidden="true" class="text-secondary" size={28} /><h2
+          class="mt-4 text-xl font-bold text-text-primary"
+        >
+          Developer first
+        </h2><p class="mt-3 text-sm text-text-secondary">
+          Information architecture prioritizes repositories, versions, platforms, licenses,
+          documentation, and contribution paths.
+        </p>
+      </article>
+      <article class="rounded-xl border border-border bg-surface p-6">
+        <GitBranch aria-hidden="true" class="text-secondary" size={28} /><h2
+          class="mt-4 text-xl font-bold text-text-primary"
+        >
+          Public engineering workflow
+        </h2><p class="mt-3 text-sm text-text-secondary">
+          Source, issues, pull requests, release notes, and maintenance policies remain reviewable
+          on GitHub.
+        </p>
+      </article>
+      <article class="rounded-xl border border-border bg-surface p-6">
+        <Gauge aria-hidden="true" class="text-secondary" size={28} /><h2
+          class="mt-4 text-xl font-bold text-text-primary"
+        >
+          Fast static delivery
+        </h2><p class="mt-3 text-sm text-text-secondary">
+          Astro generates static HTML with minimal runtime overhead and no required client-side
+          application JavaScript.
+        </p>
+      </article>
+      <article class="rounded-xl border border-border bg-surface p-6">
+        <ShieldCheck aria-hidden="true" class="text-secondary" size={28} /><h2
+          class="mt-4 text-xl font-bold text-text-primary"
+        >
+          Accessible and maintainable
+        </h2><p class="mt-3 text-sm text-text-secondary">
+          Semantic HTML, keyboard access, focus states, strict TypeScript, reusable components, and
+          automated checks guide maintenance.
+        </p>
+      </article>
+    </div>
+  </Container>
+</BaseLayout>

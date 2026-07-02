@@ -1,0 +1,25 @@
+---
+import { Inbox } from '@lucide/astro';
+import ButtonLink from '@/components/ButtonLink.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  href?: string;
+  action?: string;
+}
+const { title, description, href, action } = Astro.props;
+---
+
+<div class="rounded-xl border border-dashed border-border bg-surface p-8 text-center">
+  <Inbox aria-hidden="true" class="mx-auto text-secondary" size={36} />
+  <h2 class="mt-4 text-xl font-bold text-text-primary">{title}</h2>
+  <p class="mx-auto mt-3 max-w-xl text-sm text-text-secondary">{description}</p>
+  {
+    href && action && (
+      <ButtonLink href={href} variant="secondary" class="mt-5">
+        {action}
+      </ButtonLink>
+    )
+  }
+</div>

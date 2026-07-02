@@ -1,0 +1,117 @@
+---
+import { GitPullRequest, Map, MessageSquare, ShieldCheck } from '@lucide/astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ButtonLink from '@/components/ButtonLink.astro';
+import Container from '@/components/Container.astro';
+import PageHero from '@/components/PageHero.astro';
+import { communityLinks } from '@/data/community';
+---
+
+<BaseLayout
+  title="Community"
+  description="Contribute to VibTools through public GitHub issues, discussions, pull requests, and roadmap processes."
+  canonicalPath="/community/"
+  breadcrumbs={[
+    { name: 'Home', url: 'https://vibtools.github.io/' },
+    { name: 'Community', url: 'https://vibtools.github.io/community/' },
+  ]}
+>
+  <PageHero
+    eyebrow="Community"
+    title="Open-source contribution channels"
+    description="Use public, reviewable engineering workflows for defects, improvements, releases, and roadmap discussion."
+  />
+  <Container class="py-14 sm:py-18">
+    <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      {
+        communityLinks.map((link) => (
+          <article class="rounded-xl border border-border bg-surface p-5">
+            <MessageSquare aria-hidden="true" class="text-secondary" size={24} />
+            <h2 class="mt-4 text-lg font-bold text-text-primary">{link.title}</h2>
+            <p class="mt-2 text-sm text-text-secondary">{link.description}</p>
+            <ButtonLink href={link.href} variant="subtle" class="mt-4">
+              Open {link.title}
+            </ButtonLink>
+          </article>
+        ))
+      }
+    </div>
+
+    <section id="discussions" class="scroll-mt-24 border-b border-border py-12">
+      <div class="flex items-center gap-3">
+        <MessageSquare aria-hidden="true" class="text-secondary" size={28} />
+        <h2 class="text-2xl font-bold text-text-primary">Discussions</h2>
+      </div>
+      <p class="mt-5 max-w-3xl text-text-secondary">
+        Use a project repository’s GitHub Discussions area when it is enabled. When a repository
+        does not provide Discussions, open a scoped issue only when the topic is actionable and
+        belongs to that repository.
+      </p>
+    </section>
+
+    <section id="contributing" class="scroll-mt-24 border-b border-border py-12">
+      <div class="flex items-center gap-3">
+        <GitPullRequest aria-hidden="true" class="text-secondary" size={28} />
+        <h2 class="text-2xl font-bold text-text-primary">Contributing</h2>
+      </div>
+      <ol class="mt-6 grid gap-4 md:grid-cols-2">
+        <li class="rounded-lg border border-border bg-surface p-5">
+          <strong class="text-text-primary">1. Select the correct repository.</strong><p
+            class="mt-2 text-sm text-text-secondary"
+          >
+            Keep issues and pull requests scoped to the project that owns the affected code.
+          </p>
+        </li>
+        <li class="rounded-lg border border-border bg-surface p-5">
+          <strong class="text-text-primary">2. Reproduce before changing.</strong><p
+            class="mt-2 text-sm text-text-secondary"
+          >
+            Document the current behavior, expected behavior, environment, and minimal reproduction.
+          </p>
+        </li>
+        <li class="rounded-lg border border-border bg-surface p-5">
+          <strong class="text-text-primary">3. Preserve compatibility.</strong><p
+            class="mt-2 text-sm text-text-secondary"
+          >
+            Avoid removing supported behavior unless the maintainers approve a breaking change.
+          </p>
+        </li>
+        <li class="rounded-lg border border-border bg-surface p-5">
+          <strong class="text-text-primary">4. Pass repository checks.</strong><p
+            class="mt-2 text-sm text-text-secondary"
+          >
+            Run formatting, type checks, tests, security checks, and builds defined by the project.
+          </p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="roadmap" class="scroll-mt-24 border-b border-border py-12">
+      <div class="flex items-center gap-3">
+        <Map aria-hidden="true" class="text-secondary" size={28} />
+        <h2 class="text-2xl font-bold text-text-primary">Roadmap</h2>
+      </div>
+      <p class="mt-5 max-w-3xl text-text-secondary">
+        The roadmap is repository-led. Approved milestones, labeled issues, and published releases
+        are the source of truth. This website does not create product commitments that are absent
+        from the official repositories.
+      </p>
+    </section>
+
+    <section class="pt-12">
+      <div class="flex items-center gap-3">
+        <ShieldCheck aria-hidden="true" class="text-secondary" size={28} />
+        <h2 class="text-2xl font-bold text-text-primary">Responsible security reporting</h2>
+      </div>
+      <p class="mt-5 max-w-3xl text-text-secondary">
+        Do not disclose exploitable security details in a public issue. Follow the security policy
+        in the affected repository or contact the project maintainers privately.
+      </p>
+      <ButtonLink
+        href="https://github.com/vibtools/vibtools.github.io/security/policy"
+        variant="secondary"
+        class="mt-5">Security policy</ButtonLink
+      >
+    </section>
+  </Container>
+</BaseLayout>

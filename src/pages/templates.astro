@@ -1,0 +1,39 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Container from '@/components/Container.astro';
+import EmptyState from '@/components/EmptyState.astro';
+import PageHero from '@/components/PageHero.astro';
+---
+
+<BaseLayout
+  title="Templates"
+  description="Official VibTools open-source template publication status and repository standards."
+  canonicalPath="/templates/"
+  breadcrumbs={[
+    { name: 'Home', url: 'https://vibtools.github.io/' },
+    { name: 'Templates', url: 'https://vibtools.github.io/templates/' },
+  ]}
+>
+  <PageHero
+    eyebrow="Templates"
+    title="Official VibTools templates"
+    description="Only repositories explicitly published as reusable templates are listed on this page."
+  />
+  <Container class="py-14 sm:py-18">
+    <EmptyState
+      title="No official templates are published"
+      description="The current VibTools repository catalog does not contain a repository marked as an official GitHub template. This state prevents normal projects from being presented as reusable starters."
+      href="https://github.com/vibtools?tab=repositories"
+      action="Review repository catalog"
+    />
+    <section class="mt-8 rounded-xl border border-border bg-surface p-6">
+      <h2 class="text-xl font-bold text-text-primary">Template publication requirements</h2>
+      <ul class="mt-4 space-y-3 text-sm text-text-secondary">
+        <li>Repository is explicitly configured and documented as a reusable template.</li>
+        <li>Setup instructions are deterministic and free of project-specific secrets.</li>
+        <li>License, security policy, contribution guide, and release process are present.</li>
+        <li>Automated validation passes before the template is listed here.</li>
+      </ul>
+    </section>
+  </Container>
+</BaseLayout>
