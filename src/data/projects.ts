@@ -2,6 +2,21 @@ import type { Project } from '@/types/project';
 
 export const projects: Project[] = [
   {
+    slug: 'tester-zepto-pro',
+    name: 'Tester Zepto Pro',
+    description:
+      'Open-source Windows desktop QA automation for authorized Razorpay Test Mode invite-flow testing with Playwright, exact-recipient verification, fail-closed safety controls, reports, and portable x64 builds.',
+    repository: 'https://github.com/vibtools/Tester-Zepto-Pro-open-source-code',
+    homepage: 'https://github.com/vibtools/Tester-Zepto-Pro-open-source-code',
+    documentation: 'https://github.com/vibtools/Tester-Zepto-Pro-open-source-code#readme',
+    language: 'Python',
+    license: 'GPL-3.0-only',
+    latestVersion: 'v1.0.6',
+    category: 'Desktop Applications',
+    operatingSystems: ['Windows', 'Portable', 'Source Code'],
+    featured: true,
+  },
+  {
     slug: 'portable-account-browser',
     name: 'PortableAccountBrowser',
     description:

@@ -70,6 +70,8 @@ See `docs/DEPLOYMENT.md` and `DEPLOYMENT_REPORT.md` for the verified workflow an
 - Navigation and site identity: `src/config/site.ts`
 - Brand tokens and global styles: `src/styles/global.css`
 
+The catalog is intentionally curated and statically generated. Creating or releasing a repository in the VibTools GitHub organization does **not** automatically add a project card or release entry. Add the repository to `src/data/projects.ts`, add its published release to `src/data/releases.ts`, validate the site, and push the update to `main` so GitHub Pages rebuilds.
+
 ## Brand rules
 
 Use only the approved VibTools logo assets, colors, Inter, JetBrains Mono, and Lucide icons. The supplied reference board is stored at `docs/brand-guidelines.png`.
@@ -83,6 +85,9 @@ Use only the approved VibTools logo assets, colors, Inter, JetBrains Mono, and L
 - `DEPLOYMENT_REPORT.md`
 - `audit/STATIC_AUDIT_RESULT.json`
 - `audit/UNIFIED_DIFF.patch`
+- `CATALOG_UPDATE_AUDIT_REPORT.md`
+- `audit/CATALOG_UPDATE_AUDIT_RESULT.json`
+- `docs/CATALOG_UPDATE_DEPLOYMENT.md`
 
 ## License
 

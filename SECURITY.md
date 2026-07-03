@@ -6,7 +6,7 @@ The latest release on the `main` branch is supported.
 
 ## Reporting a vulnerability
 
-Do not publish exploitable details in a public issue. Use GitHub private vulnerability reporting when enabled for the affected repository. If private reporting is unavailable, contact the maintainers at `design@vib.tools` with:
+Do not publish exploitable details in a public issue. Use GitHub private vulnerability reporting when enabled for the affected repository. If private reporting is unavailable, contact the maintainers at `hello@vib.tools` with:
 
 - Affected repository and version
 - Reproduction conditions

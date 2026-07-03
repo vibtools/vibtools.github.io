@@ -17,6 +17,7 @@ vibtools-open-source-hub/
 │   │   ├── home-375.png
 │   │   └── home-768.png
 │   ├── BASELINE_AUDIT_REPORT.md
+│   ├── CATALOG_UPDATE_AUDIT_RESULT.json
 │   ├── STATIC_AUDIT_RESULT.json
 │   └── UNIFIED_DIFF.patch
 ├── dist/
@@ -41,6 +42,8 @@ vibtools-open-source-hub/
 │   │   └── index.html
 │   ├── project/
 │   │   ├── portable-account-browser/
+│   │   │   └── index.html
+│   │   ├── tester-zepto-pro/
 │   │   │   └── index.html
 │   │   ├── vib-id-account-portal/
 │   │   │   └── index.html
@@ -70,6 +73,7 @@ vibtools-open-source-hub/
 │   └── sitemap.xml
 ├── docs/
 │   ├── brand-guidelines.png
+│   ├── CATALOG_UPDATE_DEPLOYMENT.md
 │   ├── DEPLOYMENT.md
 │   └── QA_CHECKLIST.md
 ├── public/
@@ -104,7 +108,8 @@ vibtools-open-source-hub/
 │   │   └── site.ts
 │   ├── content/
 │   │   └── changelog/
-│   │       └── 2026-07-01-v1.0.0.md
+│   │       ├── 2026-07-01-v1.0.0.md
+│   │       └── 2026-07-02-v1.0.1.md
 │   ├── data/
 │   │   ├── community.ts
 │   │   ├── projects.ts
@@ -151,6 +156,7 @@ vibtools-open-source-hub/
 ├── astro.config.mjs
 ├── AUDIT_REPORT.md
 ├── BUILD_REPORT.md
+├── CATALOG_UPDATE_AUDIT_REPORT.md
 ├── CHANGE_REPORT.md
 ├── CHANGELOG.md
 ├── CODE_OF_CONDUCT.md

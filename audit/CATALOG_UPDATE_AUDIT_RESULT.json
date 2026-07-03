@@ -1,0 +1,63 @@
+{
+  "status": "pass",
+  "errors": [],
+  "metrics": {
+    "html_pages": 17,
+    "dist_files": 31,
+    "internal_links_checked": 322,
+    "external_links_seen": 152,
+    "fragment_references_checked": 20,
+    "image_references_checked": 51,
+    "generated_javascript_files": 0,
+    "inline_style_attributes": 0,
+    "inline_event_handlers": 0,
+    "executable_inline_scripts": 0,
+    "css_byte_identical_to_baseline": true,
+    "source_changes": [
+      {
+        "status": "added",
+        "path": "CATALOG_UPDATE_AUDIT_REPORT.md"
+      },
+      {
+        "status": "modified",
+        "path": "CHANGELOG.md"
+      },
+      {
+        "status": "modified",
+        "path": "PROJECT_TREE.txt"
+      },
+      {
+        "status": "modified",
+        "path": "README.md"
+      },
+      {
+        "status": "added",
+        "path": "audit/CATALOG_UPDATE_AUDIT_RESULT.json"
+      },
+      {
+        "status": "added",
+        "path": "docs/CATALOG_UPDATE_DEPLOYMENT.md"
+      },
+      {
+        "status": "modified",
+        "path": "package-lock.json"
+      },
+      {
+        "status": "modified",
+        "path": "package.json"
+      },
+      {
+        "status": "added",
+        "path": "src/content/changelog/2026-07-02-v1.0.1.md"
+      },
+      {
+        "status": "modified",
+        "path": "src/data/projects.ts"
+      },
+      {
+        "status": "modified",
+        "path": "src/data/releases.ts"
+      }
+    ]
+  }
+}

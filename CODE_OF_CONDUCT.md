@@ -17,4 +17,4 @@ Harassment, threats, discrimination, deliberate disruption, publication of priva
 
 ## Enforcement
 
-Report conduct concerns privately to `design@vib.tools`. Maintainers may edit, hide, reject, or remove contributions and may restrict participation when necessary to protect the community and projects.
+Report conduct concerns privately to `hello@vib.tools`. Maintainers may edit, hide, reject, or remove contributions and may restrict participation when necessary to protect the community and projects.

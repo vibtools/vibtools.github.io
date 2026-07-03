@@ -2,6 +2,16 @@ import type { Release } from '@/types/project';
 
 export const releases: Release[] = [
   {
+    projectSlug: 'tester-zepto-pro',
+    projectName: 'Tester Zepto Pro',
+    version: 'v1.0.6',
+    publishedAt: '2026-07-02',
+    summary:
+      'Final Windows x64 release with authorized Test Mode safeguards, exact-recipient verification, regression-tested build automation, and portable distribution.',
+    releaseUrl: 'https://github.com/vibtools/Tester-Zepto-Pro-open-source-code/releases/tag/v1.0.6',
+    downloadUrl: 'https://github.com/vibtools/Tester-Zepto-Pro-open-source-code/releases/latest',
+  },
+  {
     projectSlug: 'portable-account-browser',
     projectName: 'PortableAccountBrowser',
     version: 'v1.3.1',

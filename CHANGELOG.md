@@ -2,6 +2,18 @@
 
 All notable changes to the VibTools Open Source Hub are documented here.
 
+## [1.0.1] - 2026-07-02
+
+### Fixed
+
+- Added the newly published Tester Zepto Pro repository to the curated project catalog.
+- Added Tester Zepto Pro v1.0.6 to the release catalog, homepage release section, downloads, feeds, sitemap, and project detail generation.
+- Documented that repository publication alone does not update this static catalog; catalog data must be committed to this repository and GitHub Pages redeployed.
+
+### Preserved
+
+- Existing routes, visual design, components, project entries, releases, accessibility behavior, SEO structure, and GitHub API enrichment remain unchanged.
+
 ## [1.0.0] - 2026-07-01
 
 ### Added

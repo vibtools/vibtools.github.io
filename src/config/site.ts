@@ -5,7 +5,7 @@ export const site = {
     'The official VibTools open source developer hub for projects, releases, downloads, templates, developer tools, and community contribution.',
   url: 'https://vibtools.github.io',
   github: 'https://github.com/vibtools',
-  email: 'design@vib.tools',
+  email: 'hello@vib.tools',
   locale: 'en_US',
   language: 'en',
 } as const;
