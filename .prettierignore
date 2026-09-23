@@ -5,3 +5,5 @@ public/brand
 public/*.png
 docs/*.png
 package-lock.json
+google*.html
+public/google*.html

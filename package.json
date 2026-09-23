@@ -5,16 +5,16 @@
   "type": "module",
   "description": "Official VibTools open source developer ecosystem website.",
   "license": "MIT",
-  "packageManager": "npm@11.18.0",
   "engines": {
     "node": "^20.20.0 || >=22.12.0"
   },
   "scripts": {
-    "dev": "node ./scripts/astro-cli.mjs dev",
-    "start": "node ./scripts/astro-cli.mjs dev",
+    "dev": "node ./scripts/astro-cli.mjs dev --host 0.0.0.0 --port 3000",
+    "start": "node ./scripts/astro-cli.mjs dev --host 0.0.0.0 --port 3000",
     "build": "node ./scripts/astro-cli.mjs build",
-    "preview": "node ./scripts/astro-cli.mjs preview",
+    "preview": "node ./scripts/astro-cli.mjs preview --host 0.0.0.0 --port 3000",
     "check": "node ./scripts/astro-cli.mjs check",
+    "lint": "npm run check && npm run format:check",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "validate": "npm run check && npm run format:check && npm run build && npm run audit:prod",
