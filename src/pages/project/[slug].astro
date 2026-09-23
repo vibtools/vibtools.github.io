@@ -23,10 +23,30 @@ const sourceUrl = `https://github.com/vibtools/${repositoryName}/archive/refs/he
   title={project.name}
   description={project.description}
   canonicalPath={`/project/${project.slug}/`}
+  imageAlt={`${project.name} — ${project.category} by VibTools`}
   breadcrumbs={[
     { name: 'Home', url: 'https://vibtools.github.io/' },
     { name: 'Projects', url: 'https://vibtools.github.io/projects/' },
     { name: project.name, url: `https://vibtools.github.io/project/${project.slug}/` },
+  ]}
+  softwareApplication={{
+    name: project.name,
+    description: project.description,
+    applicationCategory: project.category,
+    operatingSystem: project.operatingSystems,
+    codeRepository: project.repository,
+    license: project.license,
+    version: project.latestVersion,
+  }}
+  keywords={[
+    project.name,
+    project.category,
+    project.language,
+    project.license,
+    ...project.operatingSystems,
+    'open source software',
+    'GitHub repository',
+    'VibTools',
   ]}
 >
   <Container class="py-10 sm:py-14">

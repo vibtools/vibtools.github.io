@@ -19,12 +19,27 @@ const groups: { name: OperatingSystem; icon: typeof Laptop }[] = [
 ---
 
 <BaseLayout
-  title="Downloads"
-  description="Official VibTools downloads for Windows, Linux, macOS, portable packages, and source code."
+  title="Download Open Source Software & Binaries"
+  description="Download official VibTools releases for Windows, Linux, macOS, portable executables, and GitHub source code archives."
   canonicalPath="/downloads/"
   breadcrumbs={[
     { name: 'Home', url: 'https://vibtools.github.io/' },
     { name: 'Downloads', url: 'https://vibtools.github.io/downloads/' },
+  ]}
+  itemList={projects.map((project) => ({
+    name: `${project.name} (Download)`,
+    url: `https://vibtools.github.io/project/${project.slug}/`,
+    description: `Download ${project.name} for ${project.operatingSystems.join(', ')}`,
+  }))}
+  keywords={[
+    'VibTools downloads',
+    'download open source software',
+    'portable Windows software',
+    'Linux server binaries',
+    'macOS open source',
+    'GitHub releases download',
+    'Tester Zepto Pro download',
+    'PortableAccountBrowser download',
   ]}
 >
   <PageHero

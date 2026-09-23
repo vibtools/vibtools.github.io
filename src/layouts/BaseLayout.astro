@@ -4,26 +4,56 @@ import Footer from '@/components/Footer.astro';
 import Header from '@/components/Header.astro';
 import SkipLink from '@/components/SkipLink.astro';
 import { site } from '@/config/site';
-import { createStructuredData, type BreadcrumbItem } from '@/lib/seo';
+import {
+  createStructuredData,
+  type BreadcrumbItem,
+  type ItemListItem,
+  type SoftwareApplicationData,
+} from '@/lib/seo';
 
 interface Props {
   title?: string;
   description?: string;
   canonicalPath?: string;
   image?: string;
+  imageAlt?: string;
   type?: 'website' | 'article';
   noindex?: boolean;
   breadcrumbs?: BreadcrumbItem[];
+  softwareApplication?: SoftwareApplicationData;
+  itemList?: ItemListItem[];
+  keywords?: string[];
 }
+
+const defaultKeywords = [
+  'VibTools',
+  'open source software',
+  'developer tools',
+  'desktop applications',
+  'QA automation',
+  'Playwright testing',
+  'Razorpay test mode automation',
+  'portable account browser',
+  'VibMail',
+  'self hosted mail server',
+  'developer ecosystem',
+  'GitHub open source',
+  'Windows desktop tools',
+  'Linux tools',
+];
 
 const {
   title = site.tagline,
   description = site.description,
   canonicalPath = Astro.url.pathname,
   image = '/og-default.png',
+  imageAlt = `${site.name} — Open Source Developer Ecosystem`,
   type = 'website',
   noindex = false,
   breadcrumbs = [],
+  softwareApplication,
+  itemList,
+  keywords = defaultKeywords,
 } = Astro.props;
 
 const metaTitle =
@@ -37,6 +67,8 @@ const structuredData = createStructuredData({
   image: socialImage,
   type,
   breadcrumbs,
+  ...(softwareApplication ? { softwareApplication } : {}),
+  ...(itemList ? { itemList } : {}),
 });
 ---
 
@@ -48,12 +80,72 @@ const structuredData = createStructuredData({
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#0D1117" />
     <meta name="color-scheme" content="dark" />
-    <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="application-name" content={site.name} />
+    <meta name="apple-mobile-web-app-title" content={site.name} />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="author" content={site.name} />
+    <meta name="publisher" content={site.name} />
+    <meta name="copyright" content={site.name} />
 
+    <!-- Core SEO & Search Engine Directives -->
     <title>{metaTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords.join(', ')} />
     <link rel="canonical" href={canonical} />
+
+    {
+      noindex ? (
+        <meta name="robots" content="noindex, nofollow" />
+      ) : (
+        <>
+          <meta
+            name="robots"
+            content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+          />
+          <meta
+            name="googlebot"
+            content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+          />
+          <meta
+            name="bingbot"
+            content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+          />
+        </>
+      )
+    }
+
+    <!-- OpenSearch Integration -->
+    <link
+      rel="search"
+      type="application/opensearchdescription+xml"
+      title={site.name}
+      href="/opensearch.xml"
+    />
+
+    <!-- AI & LLM Machine-Readable Indexing -->
+    <meta name="ai-readable" content="true" />
+    <meta name="ai:site-index" content="/ai-index/" />
+    <meta name="ai:llms-txt" content="/llms.txt" />
+    <meta name="ai:llms-full-txt" content="/llms-full.txt" />
+    <link
+      rel="alternate"
+      type="text/markdown"
+      title="VibTools LLMs Documentation"
+      href="/llms.txt"
+    />
+    <link
+      rel="alternate"
+      type="text/markdown"
+      title="VibTools Full LLMs Context"
+      href="/llms-full.txt"
+    />
+    <link rel="alternate" type="application/json" title="VibTools AI Index" href="/ai-index.json" />
+
+    <!-- Favicons and Web App Manifest -->
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="alternate" type="application/rss+xml" title="VibTools RSS" href="/rss.xml" />
@@ -66,19 +158,27 @@ const structuredData = createStructuredData({
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
     />
 
+    <!-- Open Graph Protocol -->
     <meta property="og:type" content={type} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={metaTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:locale" content={site.locale} />
 
+    <!-- Twitter / X Card Protocol -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={metaTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
 
+    <!-- Schema.org JSON-LD Structured Data -->
     <script type="application/ld+json" is:inline set:html={structuredData} />
   </head>
   <body>

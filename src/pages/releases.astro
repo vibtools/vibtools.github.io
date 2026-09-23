@@ -7,12 +7,26 @@ import { releases } from '@/data/releases';
 ---
 
 <BaseLayout
-  title="Release Notes"
-  description="Official VibTools release notes and download references."
+  title="Release Notes & Version Changelogs"
+  description="Browse official release notes, version changelogs, and binary download links for all VibTools open-source repositories."
   canonicalPath="/releases/"
   breadcrumbs={[
     { name: 'Home', url: 'https://vibtools.github.io/' },
     { name: 'Releases', url: 'https://vibtools.github.io/releases/' },
+  ]}
+  itemList={releases.map((release) => ({
+    name: `${release.projectName} ${release.version}`,
+    url: release.releaseUrl,
+    description: release.summary,
+  }))}
+  keywords={[
+    'VibTools releases',
+    'software changelog',
+    'release notes',
+    'GitHub releases',
+    'Tester Zepto Pro release',
+    'PortableAccountBrowser release',
+    'open source versions',
   ]}
 >
   <PageHero

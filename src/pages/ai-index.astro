@@ -1,0 +1,333 @@
+---
+import {
+  Bot,
+  CircleCheck,
+  Cpu,
+  ExternalLink,
+  FileCode,
+  FileText,
+  Layers,
+  ShieldCheck,
+  Sparkles,
+  Terminal,
+} from '@lucide/astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import ButtonLink from '@/components/ButtonLink.astro';
+import Container from '@/components/Container.astro';
+import PageHero from '@/components/PageHero.astro';
+import { projects } from '@/data/projects';
+
+const aiEndpoints = [
+  {
+    title: 'llms.txt',
+    description:
+      'Standardized LLM context file following the llmstxt.org specification. Contains clean markdown summaries of all projects, tools, and endpoints.',
+    href: '/llms.txt',
+    badge: 'LLMs Standard',
+    icon: FileText,
+  },
+  {
+    title: 'llms-full.txt',
+    description:
+      'Comprehensive, complete documentation manual. Allows any AI model to ingest the entire ecosystem in one prompt or file read.',
+    href: '/llms-full.txt',
+    badge: 'Full Documentation',
+    icon: Terminal,
+  },
+  {
+    title: 'ai-index.json',
+    description:
+      'Machine-readable typed JSON schema of all projects, releases, design tokens, categories, and verified release URLs.',
+    href: '/ai-index.json',
+    badge: 'Structured Data',
+    icon: FileCode,
+  },
+];
+
+const promptTemplates = [
+  {
+    title: 'Complete Ecosystem Audit',
+    prompt: `Analyze the VibTools open-source ecosystem from https://vibtools.github.io/llms-full.txt. Summarize the software categories, target operating systems, safety controls, and architecture principles.`,
+  },
+  {
+    title: 'Desktop Software Capabilities',
+    prompt: `Review the desktop applications in https://vibtools.github.io/llms.txt (including Tester Zepto Pro and PortableAccountBrowser). Detail their primary use cases, licensing, and installation mechanisms.`,
+  },
+  {
+    title: 'Infrastructure & Self-Hosting',
+    prompt: `Evaluate the server infrastructure project VibMail Open Source from https://vibtools.github.io/ai-index.json. What are the key architectural components and deployment steps?`,
+  },
+  {
+    title: 'Design System & UI Audit',
+    prompt: `Audit the design system and accessibility metrics of VibTools (dark palette #0D1117, typography, ARIA compliance, zero client runtime) from https://vibtools.github.io/ai-index/.`,
+  },
+];
+---
+
+<BaseLayout
+  title="AI Index & Agent Documentation"
+  description="Official AI-ready documentation, llms.txt, full ecosystem context, and machine-readable endpoints for AI models and autonomous agents."
+  canonicalPath="/ai-index/"
+  breadcrumbs={[
+    { name: 'Home', url: 'https://vibtools.github.io/' },
+    { name: 'AI Index', url: 'https://vibtools.github.io/ai-index/' },
+  ]}
+  keywords={[
+    'llms.txt',
+    'AI index',
+    'machine-readable documentation',
+    'AI search optimization',
+    'autonomous agents context',
+    'VibTools AI',
+    'structured data JSON-LD',
+  ]}
+>
+  <PageHero
+    eyebrow="AI-First Architecture"
+    title="AI Index & Agent Documentation"
+    description="VibTools is 100% readable, auditable, and indexable by large language models, AI search engines, and autonomous developer agents."
+  />
+
+  <Container class="space-y-16 py-12 sm:py-16">
+    <Breadcrumbs items={[{ label: 'AI Index' }]} />
+
+    <!-- Machine-Readable Endpoints -->
+    <section aria-labelledby="endpoints-heading">
+      <div class="flex items-center gap-3">
+        <Bot aria-hidden="true" class="text-secondary" size={26} />
+        <h2 id="endpoints-heading" class="text-2xl font-bold tracking-tight text-text-primary">
+          Machine-Readable Context Endpoints
+        </h2>
+      </div>
+      <p class="mt-2 text-text-secondary">
+        Directly pass these URLs to any AI assistant (Claude, ChatGPT, Gemini, Perplexity) or
+        automated scraper.
+      </p>
+
+      <div class="mt-6 grid gap-5 md:grid-cols-3">
+        {
+          aiEndpoints.map((ep) => {
+            const Icon = ep.icon;
+            return (
+              <article class="flex flex-col justify-between rounded-xl border border-border bg-surface p-6">
+                <div>
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="inline-flex items-center gap-1.5 rounded-full border border-secondary/30 bg-secondary/10 px-2.5 py-0.5 font-mono text-xs font-medium text-secondary">
+                      <Icon aria-hidden="true" size={14} />
+                      {ep.badge}
+                    </span>
+                    <span class="font-mono text-xs text-text-secondary">GET</span>
+                  </div>
+                  <h3 class="mt-4 font-mono text-lg font-bold text-text-primary">{ep.title}</h3>
+                  <p class="mt-2 text-sm text-text-secondary">{ep.description}</p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-border">
+                  <ButtonLink href={ep.href} class="w-full justify-center">
+                    <ExternalLink aria-hidden="true" size={16} />
+                    View {ep.title}
+                  </ButtonLink>
+                </div>
+              </article>
+            );
+          })
+        }
+      </div>
+    </section>
+
+    <!-- Project Ecosystem Technical Matrix -->
+    <section
+      aria-labelledby="matrix-heading"
+      class="rounded-xl border border-border bg-surface p-6 sm:p-8"
+    >
+      <div class="flex items-center gap-3">
+        <Layers aria-hidden="true" class="text-secondary" size={26} />
+        <h2 id="matrix-heading" class="text-2xl font-bold tracking-tight text-text-primary">
+          Ecosystem Technical Matrix
+        </h2>
+      </div>
+      <p class="mt-2 text-text-secondary">
+        Comprehensive overview of all projects, technical stacks, licensing, and OS compatibility.
+      </p>
+
+      <div class="mt-6 overflow-x-auto">
+        <table class="w-full text-left text-sm">
+          <thead>
+            <tr
+              class="border-b border-border font-mono text-xs uppercase tracking-wider text-text-secondary"
+            >
+              <th class="py-3 pr-4">Project</th>
+              <th class="py-3 px-4">Category</th>
+              <th class="py-3 px-4">Stack</th>
+              <th class="py-3 px-4">License</th>
+              <th class="py-3 px-4">Supported OS</th>
+              <th class="py-3 pl-4 text-right">Links</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-border/60">
+            {
+              projects.map((p) => (
+                <tr class="hover:bg-background/40 transition-colors">
+                  <td class="py-4 pr-4">
+                    <a
+                      href={`/project/${p.slug}/`}
+                      class="font-semibold text-text-primary hover:text-secondary focus:underline"
+                    >
+                      {p.name}
+                    </a>
+                    <p class="mt-0.5 max-w-xs text-xs text-text-secondary line-clamp-1">
+                      {p.description}
+                    </p>
+                  </td>
+                  <td class="py-4 px-4 text-text-secondary whitespace-nowrap">{p.category}</td>
+                  <td class="py-4 px-4 font-mono text-xs text-secondary whitespace-nowrap">
+                    {p.language}
+                  </td>
+                  <td class="py-4 px-4 font-mono text-xs text-text-secondary whitespace-nowrap">
+                    {p.license}
+                  </td>
+                  <td class="py-4 px-4 text-xs text-text-secondary">
+                    {p.operatingSystems.join(', ')}
+                  </td>
+                  <td class="py-4 pl-4 text-right whitespace-nowrap">
+                    <a
+                      href={p.repository}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1 font-mono text-xs text-secondary hover:underline"
+                    >
+                      Repo
+                      <ExternalLink aria-hidden="true" size={12} />
+                    </a>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Design System & Architecture Specifications for AI Agents -->
+    <section aria-labelledby="design-heading" class="grid gap-8 lg:grid-cols-2">
+      <div class="rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <div class="flex items-center gap-3">
+          <Cpu aria-hidden="true" class="text-secondary" size={24} />
+          <h2 id="design-heading" class="text-xl font-bold text-text-primary">
+            Architecture & Execution Specifications
+          </h2>
+        </div>
+        <ul class="mt-5 space-y-3.5 text-sm text-text-secondary">
+          <li class="flex items-start gap-2.5">
+            <CircleCheck aria-hidden="true" class="mt-0.5 text-success shrink-0" size={18} />
+            <span
+              ><strong class="text-text-primary">Zero Client JavaScript Runtime:</strong> Fully compiled
+              static HTML via Astro 6 with lightning-fast load times.</span
+            >
+          </li>
+          <li class="flex items-start gap-2.5">
+            <CircleCheck aria-hidden="true" class="mt-0.5 text-success shrink-0" size={18} />
+            <span
+              ><strong class="text-text-primary">Tailwind CSS 4:</strong> Utility-first responsive styling
+              utilizing modern CSS custom properties.</span
+            >
+          </li>
+          <li class="flex items-start gap-2.5">
+            <CircleCheck aria-hidden="true" class="mt-0.5 text-success shrink-0" size={18} />
+            <span
+              ><strong class="text-text-primary">Dark First Palette:</strong> Background (<code
+                class="font-mono text-secondary">#0D1117</code
+              >), Surface (<code class="font-mono text-secondary">#161B22</code>), Border (<code
+                class="font-mono text-secondary">#30363D</code
+              >), Primary Accent (<code class="font-mono text-secondary">#58A6FF</code>).</span
+            >
+          </li>
+          <li class="flex items-start gap-2.5">
+            <CircleCheck aria-hidden="true" class="mt-0.5 text-success shrink-0" size={18} />
+            <span
+              ><strong class="text-text-primary">Semantic Typography:</strong> Inter for UI elements and
+              JetBrains Mono for technical codes and metadata.</span
+            >
+          </li>
+          <li class="flex items-start gap-2.5">
+            <CircleCheck aria-hidden="true" class="mt-0.5 text-success shrink-0" size={18} />
+            <span
+              ><strong class="text-text-primary">Accessibility Compliant:</strong> Full WCAG AAA contrast
+              ratios, keyboard skip links, explicit focus rings, and ARIA landmarks.</span
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="rounded-xl border border-border bg-surface p-6 sm:p-8">
+        <div class="flex items-center gap-3">
+          <ShieldCheck aria-hidden="true" class="text-secondary" size={24} />
+          <h2 class="text-xl font-bold text-text-primary">AI Crawling & Security Policy</h2>
+        </div>
+        <ul class="mt-5 space-y-3.5 text-sm text-text-secondary">
+          <li class="flex items-start gap-2.5">
+            <CircleCheck aria-hidden="true" class="mt-0.5 text-success shrink-0" size={18} />
+            <span
+              ><strong class="text-text-primary">Unrestricted AI Crawling:</strong> Permitted in <code
+                class="font-mono text-secondary">robots.txt</code
+              > for GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended, and other legitimate
+              agents.</span
+            >
+          </li>
+          <li class="flex items-start gap-2.5">
+            <CircleCheck aria-hidden="true" class="mt-0.5 text-success shrink-0" size={18} />
+            <span
+              ><strong class="text-text-primary">Zero Tracking or Telemetry:</strong> No tracking pixels,
+              no user fingerprinting, and no marketing scripts.</span
+            >
+          </li>
+          <li class="flex items-start gap-2.5">
+            <CircleCheck aria-hidden="true" class="mt-0.5 text-success shrink-0" size={18} />
+            <span
+              ><strong class="text-text-primary">Schema.org JSON-LD:</strong> Full graph schemas embedded
+              on every page for WebSite, Organization, SoftwareApplication, and Breadcrumbs.</span
+            >
+          </li>
+          <li class="flex items-start gap-2.5">
+            <CircleCheck aria-hidden="true" class="mt-0.5 text-success shrink-0" size={18} />
+            <span
+              ><strong class="text-text-primary">Google Site Verification:</strong> Configured at <code
+                class="font-mono text-secondary">/google08b62659055db632.html</code
+              > for Search Console verification.</span
+            >
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- AI Prompt Templates -->
+    <section
+      aria-labelledby="prompts-heading"
+      class="rounded-xl border border-border bg-surface p-6 sm:p-8"
+    >
+      <div class="flex items-center gap-3">
+        <Sparkles aria-hidden="true" class="text-secondary" size={24} />
+        <h2 id="prompts-heading" class="text-2xl font-bold tracking-tight text-text-primary">
+          Ready-to-Use AI Audit Prompts
+        </h2>
+      </div>
+      <p class="mt-2 text-text-secondary">
+        Copy and paste any of these prompts directly into Claude, ChatGPT, or Gemini to conduct an
+        automated audit or deep-dive into the VibTools ecosystem.
+      </p>
+
+      <div class="mt-6 grid gap-4 md:grid-cols-2">
+        {
+          promptTemplates.map((item) => (
+            <div class="rounded-lg border border-border bg-background p-5">
+              <h3 class="font-bold text-text-primary">{item.title}</h3>
+              <div class="mt-3 rounded border border-border/80 bg-surface/80 p-3 font-mono text-xs text-text-secondary">
+                {item.prompt}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </Container>
+</BaseLayout>

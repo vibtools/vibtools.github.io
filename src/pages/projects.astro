@@ -9,12 +9,28 @@ const projects = await getProjects();
 ---
 
 <BaseLayout
-  title="Projects"
-  description="Browse every maintained VibTools open-source project and repository."
+  title="Open Source Projects & Software Catalog"
+  description="Browse public open-source software and tools by VibTools across desktop utilities, self-hosted servers, multi-account browsers, and developer systems."
   canonicalPath="/projects/"
   breadcrumbs={[
     { name: 'Home', url: 'https://vibtools.github.io/' },
     { name: 'Projects', url: 'https://vibtools.github.io/projects/' },
+  ]}
+  itemList={projects.map((project) => ({
+    name: project.name,
+    url: `https://vibtools.github.io/project/${project.slug}/`,
+    description: project.description,
+  }))}
+  keywords={[
+    'VibTools projects',
+    'open source projects catalog',
+    'desktop applications',
+    'self-hosted servers',
+    'developer utilities',
+    'Tester Zepto Pro',
+    'PortableAccountBrowser',
+    'VibMail',
+    'Vib ID Account Portal',
   ]}
 >
   <PageHero

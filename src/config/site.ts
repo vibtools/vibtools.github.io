@@ -17,11 +17,13 @@ export const navigation = [
   { label: 'Developer Tools', href: '/tools/' },
   { label: 'Releases', href: '/releases/' },
   { label: 'Community', href: '/community/' },
+  { label: 'AI Index', href: '/ai-index/' },
 ] as const;
 
 export const footerNavigation = [
   { label: 'Projects', href: '/projects/' },
   { label: 'Downloads', href: '/downloads/' },
+  { label: 'AI Index', href: '/ai-index/' },
   { label: 'GitHub', href: site.github, external: true },
   { label: 'License', href: '/license/' },
   { label: 'Privacy', href: '/privacy/' },

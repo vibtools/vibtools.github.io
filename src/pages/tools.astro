@@ -10,12 +10,26 @@ const tools = projects.filter((project) => project.slug !== 'vibtools-open-sourc
 ---
 
 <BaseLayout
-  title="Developer Tools"
-  description="Developer-facing tools in the VibTools open-source ecosystem."
+  title="Developer Tools & Desktop Utilities"
+  description="Open-source developer tools, multi-account browsers, QA testing suites, and self-hosted server utilities built by VibTools."
   canonicalPath="/tools/"
   breadcrumbs={[
     { name: 'Home', url: 'https://vibtools.github.io/' },
     { name: 'Developer Tools', url: 'https://vibtools.github.io/tools/' },
+  ]}
+  itemList={tools.map((project) => ({
+    name: project.name,
+    url: `https://vibtools.github.io/project/${project.slug}/`,
+    description: project.description,
+  }))}
+  keywords={[
+    'VibTools developer tools',
+    'desktop developer utilities',
+    'automation testing software',
+    'multi session browser',
+    'open source developer suite',
+    'QA tools',
+    'fail-closed automation',
   ]}
 >
   <PageHero

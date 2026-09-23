@@ -19,7 +19,23 @@ const totalStars = projects.reduce((total, project) => total + (project.stars ??
 const totalForks = projects.reduce((total, project) => total + (project.forks ?? 0), 0);
 ---
 
-<BaseLayout>
+<BaseLayout
+  title="Official Open Source Developer Ecosystem & Software Hub"
+  description="Explore VibTools open-source developer tools, desktop automation utilities, self-hosted servers, releases, and portable software downloads."
+  canonicalPath="/"
+  keywords={[
+    'VibTools',
+    'open source developer tools',
+    'desktop applications',
+    'portable software',
+    'Tester Zepto Pro',
+    'PortableAccountBrowser',
+    'VibMail',
+    'GitHub developer hub',
+    'self-hosted email server',
+    'QA automation',
+  ]}
+>
   <section class="border-b border-border py-16 sm:py-24">
     <Container>
       <div class="grid items-center gap-12 lg:grid-cols-[1.25fr_0.75fr]">
