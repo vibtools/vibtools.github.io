@@ -52,7 +52,8 @@ Allow: /
 # AI Index web page: ${site.url}/ai-index/
 
 Sitemap: ${site.url}/sitemap.xml
-Host: https://vibtools.github.io
+Sitemap: ${site.url}/sitemap-index.xml
+Host: vibtools.github.io
 `;
 
   return new Response(content, {

@@ -116,13 +116,14 @@ const structuredData = createStructuredData({
       )
     }
 
-    <!-- OpenSearch Integration -->
+    <!-- OpenSearch & Sitemap Integration -->
     <link
       rel="search"
       type="application/opensearchdescription+xml"
       title={site.name}
       href="/opensearch.xml"
     />
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 
     <!-- AI & LLM Machine-Readable Indexing -->
     <meta name="ai-readable" content="true" />
