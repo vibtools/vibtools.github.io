@@ -9,7 +9,9 @@ import { footerNavigation, site } from '@/config/site';
   <Container>
     <div class="grid gap-10 md:grid-cols-[1.2fr_1fr] md:items-start">
       <div>
-        <Logo />
+        <a href="/" class="group inline-flex items-center" aria-label="VibTools Home">
+          <Logo size="md" />
+        </a>
         <p class="mt-4 max-w-md text-sm text-text-secondary">{site.tagline}</p>
         <div class="mt-5 flex flex-wrap gap-3">
           <a
