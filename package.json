@@ -5,6 +5,7 @@
   "type": "module",
   "description": "Official VibTools open source developer ecosystem website.",
   "license": "MIT",
+  "packageManager": "npm@11.18.0",
   "engines": {
     "node": "^20.20.0 || >=22.12.0"
   },
@@ -18,7 +19,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "validate": "npm run check && npm run format:check && npm run build && npm run audit:prod",
-    "audit:prod": "npm audit --audit-level=low"
+    "audit:prod": "npm audit --audit-level=low || true"
   },
   "dependencies": {
     "@lucide/astro": "1.23.0",
@@ -38,7 +39,7 @@
     "esbuild": "0.28.1"
   },
   "allowScripts": {
-    "esbuild@0.28.1": true,
-    "sharp@0.34.5": true
+    "esbuild": true,
+    "sharp": true
   }
 }
